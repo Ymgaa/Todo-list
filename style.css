@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: #fffdfd;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #ffffff;
   padding: 40px;
@@ -30,7 +30,7 @@ input[type="text"] {
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: #fffdfd;
+  background: #444;
   color: #fff;
 }
 
@@ -42,10 +42,6 @@ button {
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #00ccaa;
 }
 
 ul {
@@ -78,13 +74,17 @@ li.done span {
   margin-left: 10px;
 }
 
-.delete-link {
-  color: #ff4f4f;
+.actions a {
+  color: #00ffcc;
+  margin-left: 10px;
   text-decoration: none;
-  font-weight: bold;
-  margin-left: 15px;
 }
 
-.delete-link:hover {
-  color: #ff0000;
+.actions a:hover {
+  color: #ff4081;
+}
+
+.edit-form {
+  display: flex;
+  gap: 10px;
 }
