@@ -48,34 +48,43 @@ if (isset($_GET['delete'])) {
     <title>To-Do List dengan Checkbox</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>To-Do List with Checkbox</title>
-   <body>
-    <div class="container">
-        <h2>📝 To-Do List (Checkbox)</h2>
+   <script>
+        function confirmDelete(url) {
+            if (confirm("Anda yakin akan menghapus data ini?")) {
+                window.location.href = url;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2>📝 To-Do List</h2>
 
-        <!-- Form tambah tugas -->
-        <form method="POST" class="add-form">
-            <input type="text" name="task" placeholder="Tulis tugas baru..." required>
-            <button type="submit">Tambah</button>
-        </form>
+    <!-- Form tambah tugas -->
+    <form method="POST" class="add-form">
+        <input type="text" name="task" placeholder="Tulis tugas baru..." required>
+        <button type="submit">Tambah</button>
+    </form>
 
-        <!-- Daftar tugas -->
-        <ul>
-            <!-- Daftar tugas -->
-        <ul>
-            <?php
-            $result = $conn->query("SELECT * FROM tasks ORDER BY id DESC");
-            while ($row = $result->fetch_assoc()):
-            ?>
-                <li class="<?= $row['is_done'] ? 'done' : '' ?>">
-                    <form method="POST" class="checkbox-form">
-                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                        <input type="checkbox" name="is_done" onchange="this.form.submit()" <?= $row['is_done'] ? 'checked' : '' ?>>
-                        <span><?= htmlspecialchars($row['task']) ?></span>
-                    </form>
-                    <a href="?delete=<?= $row['id'] ?>" class="delete-link" onclick="return confirm('Hapus tugas ini?')">✖</a>
-                </li>
-            <?php endwhile; ?>
-        </ul>
-    </div>
+    <!-- Daftar tugas -->
+    <ul>
+        <?php
+        $result = $conn->query("SELECT * FROM tasks ORDER BY id DESC");
+        while ($row = $result->fetch_assoc()):
+        ?>
+            <li class="<?= $row['is_done'] ? 'done' : '' ?>">
+                <!-- Checkbox -->
+                <form method="POST" class="checkbox-form">
+                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                    <input type="checkbox" name="is_done" onchange="this.form.submit()" <?= $row['is_done'] ? 'checked' : '' ?>>
+                    <span><?= htmlspecialchars($row['task']) ?></span>
+                </form>
+
+                <!-- Tombol hapus dengan konfirmasi -->
+                <a href="javascript:void(0);" onclick="confirmDelete('?delete=<?= $row['id'] ?>')" class="delete-link">✖</a>
+            </li>
+        <?php endwhile; ?>
+    </ul>
+</div>
 </body>
 </html>
