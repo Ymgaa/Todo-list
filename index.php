@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['edit_id'])) {
 </head>
 <body>
 <div class="container">
-    <h2>📝 To-Do List - Lengkap</h2>
+    <h2>📝 To-Do List</h2>
 
     <!-- Form tambah tugas -->
     <?php if (isset($_GET['edit'])): 
