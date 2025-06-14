@@ -1,3 +1,47 @@
+<?php
+// // Koneksi ke database
+
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "todo_list";
+
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+// Tambah tugas baru
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['task'])) {
+    $task = trim($_POST['task']);
+    if (!empty($task)) {
+        $task = $conn->real_escape_string($task);
+        $conn->query("INSERT INTO tasks (task) VALUES ('$task')");
+    }
+    header("Location: index.php");
+    exit;
+}
+
+// Update status (checkbox)
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
+    $id = intval($_POST['id']);
+    $checked = isset($_POST['is_done']) ? 1 : 0;
+    $conn->query("UPDATE tasks SET is_done = $checked WHERE id = $id");
+    header("Location: index.php");
+    exit;
+}
+
+// Hapus tugas
+
+if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']);
+    $conn->query("DELETE FROM tasks WHERE id = $id");
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +60,21 @@
 
         <!-- Daftar tugas -->
         <ul>
-            
+            <!-- Daftar tugas -->
+        <ul>
+            <?php
+            $result = $conn->query("SELECT * FROM tasks ORDER BY id DESC");
+            while ($row = $result->fetch_assoc()):
+            ?>
+                <li class="<?= $row['is_done'] ? 'done' : '' ?>">
+                    <form method="POST" class="checkbox-form">
+                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                        <input type="checkbox" name="is_done" onchange="this.form.submit()" <?= $row['is_done'] ? 'checked' : '' ?>>
+                        <span><?= htmlspecialchars($row['task']) ?></span>
+                    </form>
+                    <a href="?delete=<?= $row['id'] ?>" class="delete-link" onclick="return confirm('Hapus tugas ini?')">✖</a>
+                </li>
+            <?php endwhile; ?>
         </ul>
     </div>
 </body>
