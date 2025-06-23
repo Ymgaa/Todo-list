@@ -1,90 +1,54 @@
 body {
-  background-color: #fffdfd;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
-  padding: 40px;
-}
-
-.container {
-  max-width: 600px;
-  margin: auto;
-  background-color: #2e2e2e;
+  font-family: Arial;
+  background: #f4f4f4;
   padding: 30px;
-  border-radius: 12px;
 }
-
+.container {
+  width: 500px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
 h2 {
   text-align: center;
-  color: #00ffcc;
-  margin-bottom: 25px;
 }
-
-form.add-form {
+form {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
-
 input[type="text"] {
   flex: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background: #444;
-  color: #fff;
+  padding: 10px;
 }
-
 button {
-  padding: 12px 20px;
-  border: none;
-  background-color: #00ffcc;
-  color: #000;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
+  padding: 10px 20px;
 }
-
 ul {
-  list-style: none;
   padding: 0;
+  list-style: none;
 }
-
 li {
-  background: #3b3b3b;
-  padding: 14px;
-  margin-bottom: 10px;
-  border-radius: 8px;
+  background: #eee;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
-li.done span {
+.done-text {
   text-decoration: line-through;
-  color: #aaa;
+  color: gray;
 }
-
-.checkbox-form {
+.left {
   display: flex;
   align-items: center;
+  gap: 10px;
   flex: 1;
 }
-
-.checkbox-form span {
-  margin-left: 10px;
-}
-
 .actions a {
-  color: #00ffcc;
   margin-left: 10px;
   text-decoration: none;
-}
-
-.actions a:hover {
-  color: #ff4081;
-}
-
-.edit-form {
-  display: flex;
-  gap: 10px;
 }
