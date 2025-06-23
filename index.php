@@ -84,7 +84,7 @@ if (isset($_GET['edit'])) {
 </head>
 <body>
 <div class="container">
-    <h2>📝 To-Do List (CRUD + Checkbox + Edit)</h2>
+    <h2>📝 To-Do List</h2>
 
     <!-- FORM TAMBAH / EDIT -->
     <form method="POST">
